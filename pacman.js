@@ -22,7 +22,7 @@ var blinky = {
 };
 
 var pinky = {
-  menu_option: '2',
+  menu_option: '3',
   name: 'Pinky',
   colour: 'Pink',
   character: 'Bashful',
@@ -36,6 +36,8 @@ var clyde = {
   character: 'Pokey',
   edible: false
 };
+
+var ghosts = [inky, blinky, pinky, clyde];
 
 // replace this comment with your four ghosts setup as objects
 
@@ -61,6 +63,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
 }
 
@@ -76,6 +82,17 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(num) {
+  if (ghosts[num].edible === false) {
+    lives = lives - 1;
+    console.log('You died to ' + ghosts[num].colour + ' coloured ghost ' + ghosts[num].name);
+  } else {
+    score += 10;
+    console.log('You ate em');
+  }
+}
+
+
 
 // Process Player's Input
 function processInput(key) {
@@ -86,6 +103,18 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost(0);
+      break;
+    case '2':
+      eatGhost(1);
+      break;
+    case '3':
+      eatGhost(2);
+      break;
+    case '4':
+      eatGhost(3);
       break;
     default:
       console.log('\nInvalid Command!');
