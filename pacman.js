@@ -1,6 +1,6 @@
 // Setup initial game stats
 var score = 0;
-var lives = 2;
+var lives = 20;
 
 
 // Define your ghosts here
@@ -86,6 +86,10 @@ function eatGhost(num) {
   if (ghosts[num].edible === false) {
     lives = lives - 1;
     console.log('You died to ' + ghosts[num].colour + ' coloured ghost ' + ghosts[num].name);
+    if (lives <= 0) {
+      console.log('Game Over');
+      process.exit();
+    }
   } else {
     score += 10;
     console.log('You ate em');
